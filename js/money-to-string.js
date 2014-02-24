@@ -17,7 +17,7 @@ $(function(){
 			"ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"		  
 		],
 		"ordermag" : [
-			"hundred", "thousand", "million", "billion", "trillion", "zillion"			  
+			"", "thousand", "million", "billion", "trillion", "quatrillion", "quintillion", "sextillion", "septillion", "octillion", "nonillion", "zillion"			
 		]
 	}
 	
@@ -54,14 +54,30 @@ $(function(){
 		return true;
 	}
 	
+	var convertDollarsToStrDollars = function(dollars) {
+		console.log("------------");
+		var arrDollars = dollars.toString().split("").reverse();
+		var j = 0;
+		var k = 0;
+		for(i = 0; i < arrDollars.length; i++) {
+			console.log("arrDollars: " + arrDollars[i] + ", i: " + i + ", j: " + j + ", k: " + k);
+			j++;
+			if(j > 2) {
+				j = 0;
+				k++;
+			}
+		}
+	}
+	
 	$("#amount").focus().change(
 		function() {
 			var amount = $(this).val();
 			if(convertToDollarsAndCents(amount)) {
 				$("#output").text(strDollars + " dollars and " + strCents + " cents.");
 			} else {
-				$("#output").text("Please format your reponse properly, and make sure it's not a negative value.");
+				$("#output").text("Please format your response properly, and make sure it's not a negative value.");
 			}
+			convertDollarsToStrDollars(dollars);
 		}	
 	);
 	
